@@ -1,0 +1,1 @@
+transaction_data<-read.csv('D:/IIT/math-474/dunnhumby - The Complete Journey CSV/transaction_data.csv.csv',header=T, sep=",", fill = TRUE)
