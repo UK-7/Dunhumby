@@ -10,5 +10,15 @@ wines = wines[!duplicated(wines$PRODUCT_ID), ]
 SubComAvg <- aggregate(wines["UNIT_PRICE"], wines["SUB_COMMODITY_DESC"], mean)
 ComAvg <- aggregate(wines["UNIT_PRICE"], wines["COMMODITY_DESC"], mean)
 
+#Wines classified as cheapWines(<5), modWines(5-10), expWines (>10)
+cheapWines <- wines[which(wines$UNIT_PRICE < 5.00), ]
+modWines <- subset(wines, UNIT_PRICE > 5.00 & UNIT_PRICE <= 10.00)
+expWines <- subset(wines, UNIT_PRICE > 10.00)
+
+#merging wine categories
+cheapWineTrans <- merge(transactions, cheapWines, by = "PRODUCT_ID")
+modWineTrans <- merge(transactions, modWines, by = "PRODUCT_ID")
+expWineTrans <- merge(transactions, expWines, by = "PRODUCT_ID")
+
 #write.csv(ComAvg, "ComAvg.csv", append = FALSE)
 #write.csv(SubComAvg, "SubComAvg.csv", append = FALSE)
